@@ -1,0 +1,21 @@
+{
+    "name": "modera/composer-symfony-web-asset-installer-plugin",
+    "type": "composer-plugin",
+    "licence": "MIT",
+    "authors": [
+        {
+            "name": "Sergei Lissovski",
+            "email": "sergei.lissovski@modera.org",
+            "homepage": "http://sergei.lissovski.org/"
+        }
+    ],
+    "autoload": {
+        "psr-0": {"Modera\\Composer\\SymfonyWebAssetInstallerPlugin": "src/"}
+    },
+    "extra": {
+        "class": "Modera\\Composer\\SymfonyWebAssetInstallerPlugin\\Plugin"
+    },
+    "require": {
+        "composer-plugin-api": "1.0.0"
+    }
+}
