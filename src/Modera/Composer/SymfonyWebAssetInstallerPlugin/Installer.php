@@ -10,7 +10,7 @@ use Composer\Repository\InstalledRepositoryInterface;
 
 /**
  * @copyright 2013 Modera Foundation
- * @author Sergei Lissovski <sergei.lissovski@modera.org>
+ * @author    Sergei Lissovski <sergei.lissovski@modera.org>
  */
 class Installer extends LibraryInstaller
 {
@@ -52,6 +52,15 @@ class Installer extends LibraryInstaller
      */
     protected function getPackageBasePath(PackageInterface $package)
     {
-        return 'web/' . $package->getPrettyName();
+        $extra = $package->getExtra();
+
+        $targetPath = isset($extra['target_dir']) && strlen($extra['target_dir']) ? $extra['target_dir'] : '';
+        $targetPath = 'web/' . ($targetPath ? $targetPath . '/' : '');
+
+        if ($targetPath && !file_exists($targetPath)) {
+            mkdir($targetPath, 0777, true);
+        }
+
+        return  $targetPath . $package->getPrettyName();
     }
 }
