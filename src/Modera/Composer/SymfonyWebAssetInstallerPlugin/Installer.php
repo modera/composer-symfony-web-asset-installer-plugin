@@ -14,19 +14,16 @@ use Composer\Repository\InstalledRepositoryInterface;
  */
 class Installer extends LibraryInstaller
 {
-    private function validateSymfonyPackagePresence(InstalledRepositoryInterface $repo, PackageInterface $package)
+    private function isSymfonyPackagePresent(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
         foreach ($repo->getPackages() as $installedPackage) {
             /* @var PackageInterface $installedPackage */
             if ($installedPackage->getName() == 'symfony/symfony') {
-                return;
+                return true;
             }
         }
 
-        throw new \RuntimeException(sprintf(
-            "Package '%s' cannot be installed to this project because the project doesn't have 'symfony/symfony' package installed.",
-            $package->getName()
-        ));
+        return false;
     }
 
     /**
@@ -34,9 +31,9 @@ class Installer extends LibraryInstaller
      */
     public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
     {
-        $this->validateSymfonyPackagePresence($repo, $package);
-
-        parent::install($repo, $package);
+        if ($this->isSymfonyPackagePresent($repo, $package)) {
+            parent::install($repo, $package);
+        }
     }
 
     /**
