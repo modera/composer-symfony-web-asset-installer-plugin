@@ -13,7 +13,10 @@
         "psr-0": {"Modera\\Composer\\SymfonyWebAssetInstallerPlugin": "src/"}
     },
     "extra": {
-        "class": "Modera\\Composer\\SymfonyWebAssetInstallerPlugin\\Plugin"
+        "class": "Modera\\Composer\\SymfonyWebAssetInstallerPlugin\\Plugin",
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     },
     "require": {
         "composer-plugin-api": "1.0.0"
