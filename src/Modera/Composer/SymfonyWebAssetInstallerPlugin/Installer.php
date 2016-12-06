@@ -14,28 +14,6 @@ use Composer\Repository\InstalledRepositoryInterface;
  */
 class Installer extends LibraryInstaller
 {
-    private function isSymfonyPackagePresent(InstalledRepositoryInterface $repo, PackageInterface $package)
-    {
-        foreach ($repo->getPackages() as $installedPackage) {
-            /* @var PackageInterface $installedPackage */
-            if ($installedPackage->getName() == 'symfony/symfony') {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
-    {
-        if ($this->isSymfonyPackagePresent($repo, $package)) {
-            parent::install($repo, $package);
-        }
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -47,10 +25,13 @@ class Installer extends LibraryInstaller
     /**
      * @inheritDoc
      */
-    protected function getPackageBasePath(PackageInterface $package)
+    public function getInstallPath(PackageInterface $package)
     {
         $extra = $package->getExtra();
 
+        // a package being installed has ability to specify a custom location where its contents
+        // should be installed, this feature should be used with great care because chances are
+        // it might override existing files
         $targetPath = isset($extra['target_dir']) && strlen($extra['target_dir']) ? $extra['target_dir'] : '';
         $targetPath = 'web/' . ($targetPath ? $targetPath . '/' : '');
 

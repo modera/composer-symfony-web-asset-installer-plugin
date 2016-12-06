@@ -13,7 +13,7 @@ use Composer\IO\IOInterface;
 class Plugin implements PluginInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function activate(Composer $composer, IOInterface $io)
     {

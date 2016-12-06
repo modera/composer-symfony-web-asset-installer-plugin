@@ -1,10 +1,12 @@
 # ModeraComposerSymfonyWebAssetInstallerPlugin
 
+The plugin allows to install package which have their type set to "symfony-web-asset" to a custom location. 
+
 ## Installation
 
-Add this dependency to your composer.json:
+This plugin can be installed by running this command:
 
-    "modera/composer-symfony-web-asset-installer-plugin": "dev-master"
+    composer require modera/composer-symfony-web-asset-installer-plugin:~1.0
 
 ## Licensing
 

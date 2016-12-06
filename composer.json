@@ -12,13 +12,18 @@
     "autoload": {
         "psr-0": {"Modera\\Composer\\SymfonyWebAssetInstallerPlugin": "src/"}
     },
+    "require": {
+        "composer-plugin-api": "^1.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.5",
+        "phake/phake": "~2.0",
+        "composer/composer": "~1.0"
+    },
     "extra": {
         "class": "Modera\\Composer\\SymfonyWebAssetInstallerPlugin\\Plugin",
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.x-dev"
         }
-    },
-    "require": {
-        "composer-plugin-api": "^1.0.0"
     }
 }
