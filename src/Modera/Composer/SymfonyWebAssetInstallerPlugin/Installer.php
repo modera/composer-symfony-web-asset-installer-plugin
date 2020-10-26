@@ -2,11 +2,8 @@
 
 namespace Modera\Composer\SymfonyWebAssetInstallerPlugin;
 
-use Composer\Composer;
-use Composer\Installer\LibraryInstaller;
-use Composer\IO\IOInterface;
 use Composer\Package\PackageInterface;
-use Composer\Repository\InstalledRepositoryInterface;
+use Composer\Installer\LibraryInstaller;
 
 /**
  * @copyright 2013 Modera Foundation

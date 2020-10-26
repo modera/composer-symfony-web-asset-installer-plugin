@@ -2,9 +2,9 @@
 
 namespace Modera\Composer\SymfonyWebAssetInstallerPlugin;
 
-use Composer\Plugin\PluginInterface;
 use Composer\Composer;
 use Composer\IO\IOInterface;
+use Composer\Plugin\PluginInterface;
 
 /**
  * @copyright 2013 Modera Foundation
@@ -13,10 +13,31 @@ use Composer\IO\IOInterface;
 class Plugin implements PluginInterface
 {
     /**
-     * {@inheritdoc}
+     * @var Installer
+     */
+    private $installer;
+
+    /**
+     * {@inheritDoc}
      */
     public function activate(Composer $composer, IOInterface $io)
     {
-        $composer->getInstallationManager()->addInstaller(new Installer($io, $composer));
+        $this->installer = new Installer($io, $composer);
+        $composer->getInstallationManager()->addInstaller($this->installer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function deactivate(Composer $composer, IOInterface $io)
+    {
+        $composer->getInstallationManager()->removeInstaller($this->installer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function uninstall(Composer $composer, IOInterface $io)
+    {
     }
 }
