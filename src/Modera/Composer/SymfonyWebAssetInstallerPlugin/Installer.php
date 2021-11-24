@@ -36,6 +36,11 @@ class Installer extends LibraryInstaller
             mkdir($targetPath, 0777, true);
         }
 
-        return  $targetPath . $package->getPrettyName();
+        $packagePath = $package->getPrettyName();
+        if (isset($extra['package_dir']) && strlen($extra['package_dir'])) {
+            $packagePath = $extra['package_dir'];
+        }
+
+        return  $targetPath . $packagePath;
     }
 }
