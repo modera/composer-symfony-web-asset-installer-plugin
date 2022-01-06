@@ -28,9 +28,7 @@ class InstallerTest extends \PHPUnit\Framework\TestCase
             ->thenReturn($config)
         ;
 
-        $this->installer = new Installer(
-            \Phake::mock(IOInterface::class), $composer
-        );
+        $this->installer = new Installer(\Phake::mock(IOInterface::class), $composer);
     }
 
     public function testSupports()
@@ -48,22 +46,22 @@ class InstallerTest extends \PHPUnit\Framework\TestCase
 
         // no extra available, should be installed to
         $dir = $this->installer->getInstallPath($package1);
-        $this->assertEquals('web/foopkg', $dir);
-        $this->assertFileExists(PLUGIN_HOME.'/web');
+        $this->assertEquals('public/foopkg', $dir);
+        $this->assertFileExists(PLUGIN_HOME . '/public');
 
-        rmdir(PLUGIN_HOME.'/web');
+        rmdir(PLUGIN_HOME . '/public');
     }
 
     public function testGetInstallPath_withExtra()
     {
-        $package1 = $this->createDummyPackage('barpkg', array('target_dir' => 'yoyo'));
+        $package1 = $this->createDummyPackage('barpkg', array('target_dir' => 'yoyo', 'package_dir' => 'spin'));
 
         $dir = $this->installer->getInstallPath($package1);
-        $this->assertEquals('web/yoyo/barpkg', $dir);
-        $this->assertFileExists(PLUGIN_HOME.'/web/yoyo');
+        $this->assertEquals('public/yoyo/spin', $dir);
+        $this->assertFileExists(PLUGIN_HOME . '/public/yoyo');
 
-        rmdir(PLUGIN_HOME.'/web/yoyo');
-        rmdir(PLUGIN_HOME.'/web');
+        rmdir(PLUGIN_HOME . '/public/yoyo');
+        rmdir(PLUGIN_HOME . '/public');
     }
 
     private function createDummyPackage($prettyName, $extra = array())

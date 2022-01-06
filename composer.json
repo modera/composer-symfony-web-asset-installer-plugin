@@ -23,7 +23,7 @@
     "extra": {
         "class": "Modera\\Composer\\SymfonyWebAssetInstallerPlugin\\Plugin",
         "branch-alias": {
-            "dev-master": "1.x-dev"
+            "dev-master": "2.x-dev"
         }
     }
 }

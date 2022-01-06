@@ -30,7 +30,7 @@ class Installer extends LibraryInstaller
         // should be installed, this feature should be used with great care because chances are
         // it might override existing files
         $targetPath = isset($extra['target_dir']) && strlen($extra['target_dir']) ? $extra['target_dir'] : '';
-        $targetPath = 'web/' . ($targetPath ? $targetPath . '/' : '');
+        $targetPath = 'public/' . ($targetPath ? $targetPath . '/' : '');
 
         if ($targetPath && !file_exists($targetPath)) {
             mkdir($targetPath, 0777, true);
